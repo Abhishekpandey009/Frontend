@@ -23,7 +23,7 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
         .then(result => {
             // Handle the result from the server
             console.log('Success:', result);
-            window.location.href = '/success.html'; // Redirect to success page
+            window.location.href = 'index2.html'; // Redirect to success page
         })
         .catch(error => {
             console.error('Error:', error);
