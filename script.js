@@ -20,7 +20,7 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
         if (data.includes('Error')) {
             alert('An error occurred: ' + data);
         } else {
-            window.location.href = 'https://frontend-2drz.onrender.com/success.html';
+            window.location.href = 'https://frontend-2drz.onrender.com/index.html';
         }
     })
     .catch(error => {
