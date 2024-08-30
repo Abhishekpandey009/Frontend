@@ -1,32 +1,30 @@
 document.getElementById('signupForm').addEventListener('submit', function(event) {
-    const password = document.getElementById('password').value;
-    if (password.length < 6) {
-        alert('Password must be at least 6 characters long.');
-        event.preventDefault();
-    } else {
-        // If password validation passes, send form data to the backend
-        event.preventDefault(); // Prevent the default form submission
-
-        const formData = new FormData(this);
-        
-        fetch('https://testing-app-1.onrender.com/signup', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.text();
-            } else {
-                throw new Error('Network response was not ok.');
-            }
-        })
-        .then(result => {
-            // Handle the result from the server
-            console.log('Success:', result);
-            window.location.href = 'index.html'; // Redirect to success page
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
+    event.preventDefault();
+    
+    const formData = new FormData(this);
+    
+    fetch('https://testing-app-1.onrender.com/signup', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Content-Type': 'multipart/form-data' // Ensure this matches backend expectations
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.text();
+    })
+    .then(data => {
+        if (data.includes('Error')) {
+            alert('An error occurred: ' + data);
+        } else {
+            window.location.href = 'https://frontend-2drz.onrender.com/success.html';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred: ' + error.message);
+    });
 });
