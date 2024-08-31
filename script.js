@@ -5,10 +5,8 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
     
     fetch('https://testing-app-1.onrender.com/signup', {
         method: 'POST',
-        body: formData,
-        headers: {
-            'Content-Type': 'multipart/form-data' // Ensure this matches backend expectations
-        }
+        body: formData
+        // Remove the Content-Type header
     })
     .then(response => {
         if (!response.ok) {
